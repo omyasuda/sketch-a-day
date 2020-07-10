@@ -11,6 +11,7 @@ from os import listdir
 from os.path import isfile, join
 
 from helpers import get_image_files, build_entry
+from helpers import get_comments
 
 YEAR = "2020"
 base_path = "/media/villares/VolumeD/GitHub/sketch-a-day"
@@ -41,9 +42,10 @@ for insert_point, line in enumerate(lines):
 for name in reversed(new_folders):
     imgs = get_image_files(year_path, name)
     if imgs:  # insert entry if matching image found
+        comments = get_comments(year_path, name) or ''
         lines.insert(insert_point - 3,
-                     build_entry(imgs[0], YEAR))
-        print('adding: '+ name)
+                     build_entry(imgs[0], YEAR, comments))
+        print('adding: '+ name + '\n' + comments)
 # overwrite the readme markdown index
 with open(readme_path, 'wt') as readme:
     content = "".join(lines)
