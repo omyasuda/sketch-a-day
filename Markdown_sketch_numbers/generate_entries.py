@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # reads folder
 # finds missing folders from last_done
 # gets images, checks image types
@@ -49,4 +51,6 @@ for name in reversed(new_folders):
 # overwrite the readme markdown index
 with open(readme_path, 'wt') as readme:
     content = "".join(lines)
-    readme.write(content)    
+    readme.write(content)
+    print('done!') 
+    
